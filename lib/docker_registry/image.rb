@@ -27,7 +27,7 @@ module DockerRegistry
       client.exec!('delete', "v2/#{image}/manifests/#{digest}")
     end
 
-    # Not implemented due to docker distribution API issues.
+    # Not implemented due to docker distribution API lack of support for deleting images.
     def destroy
       false
     end
