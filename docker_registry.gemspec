@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.homepage    = "https://git.computestacks.com"
   s.summary     = "Docker Distribution v2 API"
   s.description = "Docker Distribution v2 API"
-  s.license     = "MIT"
+  s.license     = "closed-source"
   s.required_ruby_version = '>= 1.9.3'
   s.add_dependency 'json', "~> 1.8"
   s.add_dependency 'httparty', '>= 0.13.5'
