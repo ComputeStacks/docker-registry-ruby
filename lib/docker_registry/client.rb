@@ -21,5 +21,9 @@ module DockerRegistry
       end
     end
 
+    def version
+      1
+    end
+
   end
 end
