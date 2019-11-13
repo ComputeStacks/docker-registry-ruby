@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    docker-registry (0.1.0)
+    docker-registry (0.2.0)
       httparty (~> 0.17)
       json (~> 2.2)
 

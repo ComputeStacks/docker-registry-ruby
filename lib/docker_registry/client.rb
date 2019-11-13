@@ -15,7 +15,7 @@ module DockerRegistry
 			self.auth = auth
 			self.token_auth = nil
 			self.token_endpoint = nil
-			self.online = online? # test auth and load token auth
+			self.online = true
 		end
 
 		def exec!(http_method, path, data = {})
@@ -27,6 +27,12 @@ module DockerRegistry
 				else
 					HTTParty.get(uri_full(path), basic_auth: auth, timeout: 30, headers: { 'Content-Type' => 'application/json', 'Accept' => 'application/json' }, verify: false)
 				end
+			when 'head'
+				if token_auth
+					HTTParty.head(uri_full(path), timeout: 30, headers: { 'Authorization' => "Bearer #{self.token_auth}", 'Accept' => 'application/json', 'Content-Type' => 'application/json' }, verify: false)
+				else
+					HTTParty.head(uri_full(path), basic_auth: auth, timeout: 30, headers: { 'Content-Type' => 'application/json', 'Accept' => 'application/json' }, verify: false)
+				end
 			when 'delete'
 				if token_auth
 					HTTParty.delete(uri_full(path), timeout: 30, headers: { 'Authorization' => "Bearer #{self.token_auth}", 'Content-Type' => 'application/json', 'Accept' => 'application/json' }, verify: false)
@@ -34,30 +40,20 @@ module DockerRegistry
 					HTTParty.delete(uri_full(path), basic_auth: auth, timeout: 30, headers: { 'Content-Type' => 'application/json', 'Accept' => 'application/json' }, verify: false)
 				end
 			else
+				self.token_auth = nil
 				return nil
 			end
 			if self.online && (rsp.code == 401 && rsp.headers['www-authenticate']) && !token_auth
 				authenticate!(rsp.headers['www-authenticate'])
 				exec!(http_method, path, data)
 			else
+				self.token_auth = nil
 				rsp
 			end
 		end
 
 		def version
 			1
-		end
-
-		def online?
-			return true if is_docker_hub?
-			response = exec!('get', nil)
-			return true if response.code < 300
-			# Token auth
-			authenticate!(response.headers['www-authenticate']) if response.headers['www-authenticate']
-			response = exec!('get', nil)
-			response.code < 300
-		rescue
-			false
 		end
 
 		def is_docker_hub?
