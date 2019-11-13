@@ -5,6 +5,7 @@ module DockerRegistry
 									:port,
 									:auth,
 									:token_auth,
+									:token_endpoint,
 									:online
 
 		# auth = {username: 'username', password: 'password'}
@@ -13,6 +14,7 @@ module DockerRegistry
 			self.port = port
 			self.auth = auth
 			self.token_auth = nil
+			self.token_endpoint = nil
 			self.online = online? # test auth and load token auth
 		end
 
@@ -43,17 +45,16 @@ module DockerRegistry
 			return true if response.code < 300
 			# Token auth
 			if response.headers['www-authenticate']
-				auth_host = ""
 				query_params = []
 				response.headers['www-authenticate'].gsub('Bearer ', '').split(',').each do |el|
 					k,v = el.split('=')
 					if k == 'realm'
-						auth_host = v.strip.gsub('"','')
+						self.token_endpoint = v.strip.gsub('"','')
 					else
 						query_params << el.strip.gsub('"','')
 					end
 				end
-				auth_token(auth_host, query_params)
+				auth_token(query_params)
 			end
 			response = exec!('get', 'v2/')
 			response.code < 300
@@ -68,7 +69,8 @@ module DockerRegistry
 		end
 
 		def auth_token(host, params)
-			rsp = HTTParty.get("#{host}?#{params.join('&')}", basic_auth: auth, verify: false)
+			return nil if self.token_endpoint.blank?
+			rsp = HTTParty.get("#{self.token_endpoint}?#{params.join('&')}", basic_auth: auth, verify: false)
 			if rsp.code < 300
 				data = JSON.parse(rsp.body)
 				self.token_auth = data['token']
