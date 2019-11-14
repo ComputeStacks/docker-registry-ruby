@@ -8,13 +8,15 @@ module DockerRegistry
 		end
 
 		def images
-			repos = client.exec!('get', '_catalog')
+			rsp = client.exec!('get', '_catalog')
+			return [] if rsp.status > 205
+			repos = JSON.parse(rsp.body, quirks_mode: true, allow_nan: true)
 			if repos.nil? || repos['repositories'].nil? || repos['repositories'].empty?
 				return []
 			else
 				result = []
 				repos['repositories'].each do |i|
-					result << DockerRegistry::Image.new(host, port, {username: username, password: password}, i)
+					result << DockerRegistry::Image.new(client, i)
 				end
 				return result
 			end
