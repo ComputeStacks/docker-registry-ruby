@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://cr.demo.cmptstks.net:25000/v2/nginx/tags/list
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.docker.distribution.manifest.v2+json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Faraday v0.17.0
+      Authorization:
+      - Basic YWRtaW46NUkzNEVNMWlJdw==
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=utf-8
+      docker-distribution-api-version:
+      - registry/2.0
+      x-content-type-options:
+      - nosniff
+      date:
+      - Thu, 14 Nov 2019 02:10:05 GMT
+      content-length:
+      - '44'
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"name":"nginx","tags":["latest","stable"]}
+
+        '
+    http_version: 
+  recorded_at: Thu, 14 Nov 2019 02:10:05 GMT
+recorded_with: VCR 5.0.0

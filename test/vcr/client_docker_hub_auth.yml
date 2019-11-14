@@ -1,0 +1,116 @@
+---
+http_interactions:
+- request:
+    method: head
+    uri: https://registry.hub.docker.com/v2/library/mysql/manifests/latest
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.docker.distribution.manifest.v2+json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Faraday v0.17.0
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      content-type:
+      - application/json
+      docker-distribution-api-version:
+      - registry/2.0
+      www-authenticate:
+      - Bearer realm="https://auth.docker.io/token",service="registry.docker.io",scope="repository:library/mysql:pull"
+      date:
+      - Thu, 14 Nov 2019 02:06:12 GMT
+      content-length:
+      - '156'
+      connection:
+      - close
+      strict-transport-security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Thu, 14 Nov 2019 02:06:12 GMT
+- request:
+    method: get
+    uri: https://auth.docker.io/token?scope=repository%3Alibrary%2Fmysql%3Apull&service=registry.docker.io
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Faraday v0.17.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json
+      date:
+      - Thu, 14 Nov 2019 02:06:12 GMT
+      connection:
+      - close
+      transfer-encoding:
+      - chunked
+      strict-transport-security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: '{"token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsIng1YyI6WyJNSUlDK2pDQ0FwK2dBd0lCQWdJQkFEQUtCZ2dxaGtqT1BRUURBakJHTVVRd1FnWURWUVFERXpzeVYwNVpPbFZMUzFJNlJFMUVVanBTU1U5Rk9reEhOa0U2UTFWWVZEcE5SbFZNT2tZelNFVTZOVkF5VlRwTFNqTkdPa05CTmxrNlNrbEVVVEFlRncweE9UQXhNVEl3TURJeU5EVmFGdzB5TURBeE1USXdNREl5TkRWYU1FWXhSREJDQmdOVkJBTVRPMUpMTkZNNlMwRkxVVHBEV0RWRk9rRTJSMVE2VTBwTVR6cFFNbEpMT2tOWlZVUTZTMEpEU0RwWFNVeE1Pa3hUU2xrNldscFFVVHBaVWxsRU1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBcjY2bXkveXpHN21VUzF3eFQ3dFplS2pqRzcvNnBwZFNMY3JCcko5VytwcndzMGtIUDVwUHRkMUpkcFdEWU1OZWdqQXhpUWtRUUNvd25IUnN2ODVUalBUdE5wUkdKVTRkeHJkeXBvWGc4TVhYUEUzL2lRbHhPS2VNU0prNlRKbG5wNGFtWVBHQlhuQXRoQzJtTlR5ak1zdFh2ZmNWN3VFYWpRcnlOVUcyUVdXQ1k1Ujl0a2k5ZG54Z3dCSEF6bG8wTzJCczFmcm5JbmJxaCtic3ZSZ1FxU3BrMWhxYnhSU3AyRlNrL2tBL1gyeUFxZzJQSUJxWFFMaTVQQ3krWERYZElJczV6VG9ZbWJUK0pmbnZaMzRLcG5mSkpNalpIRW4xUVJtQldOZXJZcVdtNVhkQVhUMUJrQU9aditMNFVwSTk3NFZFZ2ppY1JINVdBeWV4b1BFclRRSURBUUFCbzRHeU1JR3ZNQTRHQTFVZER3RUIvd1FFQXdJSGdEQVBCZ05WSFNVRUNEQUdCZ1JWSFNVQU1FUUdBMVVkRGdROUJEdFNTelJUT2t0QlMxRTZRMWcxUlRwQk5rZFVPbE5LVEU4NlVESlNTenBEV1ZWRU9rdENRMGc2VjBsTVREcE1VMHBaT2xwYVVGRTZXVkpaUkRCR0JnTlZIU01FUHpBOWdEc3lWMDVaT2xWTFMxSTZSRTFFVWpwU1NVOUZPa3hITmtFNlExVllWRHBOUmxWTU9rWXpTRVU2TlZBeVZUcExTak5HT2tOQk5sazZTa2xFVVRBS0JnZ3Foa2pPUFFRREFnTkpBREJHQWlFQXFOSXEwMFdZTmM5Z2tDZGdSUzRSWUhtNTRZcDBTa05Rd2lyMm5hSWtGd3dDSVFEMjlYdUl5TmpTa1cvWmpQaFlWWFB6QW9TNFVkRXNvUUhyUVZHMDd1N3ZsUT09Il19.eyJhY2Nlc3MiOlt7InR5cGUiOiJyZXBvc2l0b3J5IiwibmFtZSI6ImxpYnJhcnkvbXlzcWwiLCJhY3Rpb25zIjpbInB1bGwiXX1dLCJhdWQiOiJyZWdpc3RyeS5kb2NrZXIuaW8iLCJleHAiOjE1NzM2OTc0NzIsImlhdCI6MTU3MzY5NzE3MiwiaXNzIjoiYXV0aC5kb2NrZXIuaW8iLCJqdGkiOiI5cm1iRnYwc21wcVdTZC1CNk9iNiIsIm5iZiI6MTU3MzY5Njg3Miwic3ViIjoiIn0.mh63YBvX_jlltxOWMP_yDM9mlpvLaIY96rhcwIPzcCOm70rEHdk0NvwsoIAtmNMyTUD94Sz7FOzNQSKzuvcEHb4-DuygD7GrKcLdPeMeuoT2VX-o_fotehmuKaCNcXKj6K8e7kwndu_QzNjfU6ZdQ9eshqwo-fBHoYLANRPgvrrjhb0tdpfRSb7l25T8i6m7JsdfKz5OVpJTY_geVmUgc3slDg-njT1yZBhFWKXydHbGDaxSKVovY9y06aonl6Pm41kUKHa2ReD3HgKIMxinYPyQ1a8bkeIit5IbztrzQrw1-7I2xQZy2zfF9rkBgv9_aVmf5__2D0Ynr-gMFWeF8A","access_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsIng1YyI6WyJNSUlDK2pDQ0FwK2dBd0lCQWdJQkFEQUtCZ2dxaGtqT1BRUURBakJHTVVRd1FnWURWUVFERXpzeVYwNVpPbFZMUzFJNlJFMUVVanBTU1U5Rk9reEhOa0U2UTFWWVZEcE5SbFZNT2tZelNFVTZOVkF5VlRwTFNqTkdPa05CTmxrNlNrbEVVVEFlRncweE9UQXhNVEl3TURJeU5EVmFGdzB5TURBeE1USXdNREl5TkRWYU1FWXhSREJDQmdOVkJBTVRPMUpMTkZNNlMwRkxVVHBEV0RWRk9rRTJSMVE2VTBwTVR6cFFNbEpMT2tOWlZVUTZTMEpEU0RwWFNVeE1Pa3hUU2xrNldscFFVVHBaVWxsRU1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBcjY2bXkveXpHN21VUzF3eFQ3dFplS2pqRzcvNnBwZFNMY3JCcko5VytwcndzMGtIUDVwUHRkMUpkcFdEWU1OZWdqQXhpUWtRUUNvd25IUnN2ODVUalBUdE5wUkdKVTRkeHJkeXBvWGc4TVhYUEUzL2lRbHhPS2VNU0prNlRKbG5wNGFtWVBHQlhuQXRoQzJtTlR5ak1zdFh2ZmNWN3VFYWpRcnlOVUcyUVdXQ1k1Ujl0a2k5ZG54Z3dCSEF6bG8wTzJCczFmcm5JbmJxaCtic3ZSZ1FxU3BrMWhxYnhSU3AyRlNrL2tBL1gyeUFxZzJQSUJxWFFMaTVQQ3krWERYZElJczV6VG9ZbWJUK0pmbnZaMzRLcG5mSkpNalpIRW4xUVJtQldOZXJZcVdtNVhkQVhUMUJrQU9aditMNFVwSTk3NFZFZ2ppY1JINVdBeWV4b1BFclRRSURBUUFCbzRHeU1JR3ZNQTRHQTFVZER3RUIvd1FFQXdJSGdEQVBCZ05WSFNVRUNEQUdCZ1JWSFNVQU1FUUdBMVVkRGdROUJEdFNTelJUT2t0QlMxRTZRMWcxUlRwQk5rZFVPbE5LVEU4NlVESlNTenBEV1ZWRU9rdENRMGc2VjBsTVREcE1VMHBaT2xwYVVGRTZXVkpaUkRCR0JnTlZIU01FUHpBOWdEc3lWMDVaT2xWTFMxSTZSRTFFVWpwU1NVOUZPa3hITmtFNlExVllWRHBOUmxWTU9rWXpTRVU2TlZBeVZUcExTak5HT2tOQk5sazZTa2xFVVRBS0JnZ3Foa2pPUFFRREFnTkpBREJHQWlFQXFOSXEwMFdZTmM5Z2tDZGdSUzRSWUhtNTRZcDBTa05Rd2lyMm5hSWtGd3dDSVFEMjlYdUl5TmpTa1cvWmpQaFlWWFB6QW9TNFVkRXNvUUhyUVZHMDd1N3ZsUT09Il19.eyJhY2Nlc3MiOlt7InR5cGUiOiJyZXBvc2l0b3J5IiwibmFtZSI6ImxpYnJhcnkvbXlzcWwiLCJhY3Rpb25zIjpbInB1bGwiXX1dLCJhdWQiOiJyZWdpc3RyeS5kb2NrZXIuaW8iLCJleHAiOjE1NzM2OTc0NzIsImlhdCI6MTU3MzY5NzE3MiwiaXNzIjoiYXV0aC5kb2NrZXIuaW8iLCJqdGkiOiI5cm1iRnYwc21wcVdTZC1CNk9iNiIsIm5iZiI6MTU3MzY5Njg3Miwic3ViIjoiIn0.mh63YBvX_jlltxOWMP_yDM9mlpvLaIY96rhcwIPzcCOm70rEHdk0NvwsoIAtmNMyTUD94Sz7FOzNQSKzuvcEHb4-DuygD7GrKcLdPeMeuoT2VX-o_fotehmuKaCNcXKj6K8e7kwndu_QzNjfU6ZdQ9eshqwo-fBHoYLANRPgvrrjhb0tdpfRSb7l25T8i6m7JsdfKz5OVpJTY_geVmUgc3slDg-njT1yZBhFWKXydHbGDaxSKVovY9y06aonl6Pm41kUKHa2ReD3HgKIMxinYPyQ1a8bkeIit5IbztrzQrw1-7I2xQZy2zfF9rkBgv9_aVmf5__2D0Ynr-gMFWeF8A","expires_in":300,"issued_at":"2019-11-14T02:06:12.424311959Z"}
+
+        '
+    http_version: 
+  recorded_at: Thu, 14 Nov 2019 02:06:12 GMT
+- request:
+    method: head
+    uri: https://registry.hub.docker.com/v2/library/mysql/manifests/latest
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.docker.distribution.manifest.v2+json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Faraday v0.17.0
+      Authorization:
+      - Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsIng1YyI6WyJNSUlDK2pDQ0FwK2dBd0lCQWdJQkFEQUtCZ2dxaGtqT1BRUURBakJHTVVRd1FnWURWUVFERXpzeVYwNVpPbFZMUzFJNlJFMUVVanBTU1U5Rk9reEhOa0U2UTFWWVZEcE5SbFZNT2tZelNFVTZOVkF5VlRwTFNqTkdPa05CTmxrNlNrbEVVVEFlRncweE9UQXhNVEl3TURJeU5EVmFGdzB5TURBeE1USXdNREl5TkRWYU1FWXhSREJDQmdOVkJBTVRPMUpMTkZNNlMwRkxVVHBEV0RWRk9rRTJSMVE2VTBwTVR6cFFNbEpMT2tOWlZVUTZTMEpEU0RwWFNVeE1Pa3hUU2xrNldscFFVVHBaVWxsRU1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBcjY2bXkveXpHN21VUzF3eFQ3dFplS2pqRzcvNnBwZFNMY3JCcko5VytwcndzMGtIUDVwUHRkMUpkcFdEWU1OZWdqQXhpUWtRUUNvd25IUnN2ODVUalBUdE5wUkdKVTRkeHJkeXBvWGc4TVhYUEUzL2lRbHhPS2VNU0prNlRKbG5wNGFtWVBHQlhuQXRoQzJtTlR5ak1zdFh2ZmNWN3VFYWpRcnlOVUcyUVdXQ1k1Ujl0a2k5ZG54Z3dCSEF6bG8wTzJCczFmcm5JbmJxaCtic3ZSZ1FxU3BrMWhxYnhSU3AyRlNrL2tBL1gyeUFxZzJQSUJxWFFMaTVQQ3krWERYZElJczV6VG9ZbWJUK0pmbnZaMzRLcG5mSkpNalpIRW4xUVJtQldOZXJZcVdtNVhkQVhUMUJrQU9aditMNFVwSTk3NFZFZ2ppY1JINVdBeWV4b1BFclRRSURBUUFCbzRHeU1JR3ZNQTRHQTFVZER3RUIvd1FFQXdJSGdEQVBCZ05WSFNVRUNEQUdCZ1JWSFNVQU1FUUdBMVVkRGdROUJEdFNTelJUT2t0QlMxRTZRMWcxUlRwQk5rZFVPbE5LVEU4NlVESlNTenBEV1ZWRU9rdENRMGc2VjBsTVREcE1VMHBaT2xwYVVGRTZXVkpaUkRCR0JnTlZIU01FUHpBOWdEc3lWMDVaT2xWTFMxSTZSRTFFVWpwU1NVOUZPa3hITmtFNlExVllWRHBOUmxWTU9rWXpTRVU2TlZBeVZUcExTak5HT2tOQk5sazZTa2xFVVRBS0JnZ3Foa2pPUFFRREFnTkpBREJHQWlFQXFOSXEwMFdZTmM5Z2tDZGdSUzRSWUhtNTRZcDBTa05Rd2lyMm5hSWtGd3dDSVFEMjlYdUl5TmpTa1cvWmpQaFlWWFB6QW9TNFVkRXNvUUhyUVZHMDd1N3ZsUT09Il19.eyJhY2Nlc3MiOlt7InR5cGUiOiJyZXBvc2l0b3J5IiwibmFtZSI6ImxpYnJhcnkvbXlzcWwiLCJhY3Rpb25zIjpbInB1bGwiXX1dLCJhdWQiOiJyZWdpc3RyeS5kb2NrZXIuaW8iLCJleHAiOjE1NzM2OTc0NzIsImlhdCI6MTU3MzY5NzE3MiwiaXNzIjoiYXV0aC5kb2NrZXIuaW8iLCJqdGkiOiI5cm1iRnYwc21wcVdTZC1CNk9iNiIsIm5iZiI6MTU3MzY5Njg3Miwic3ViIjoiIn0.mh63YBvX_jlltxOWMP_yDM9mlpvLaIY96rhcwIPzcCOm70rEHdk0NvwsoIAtmNMyTUD94Sz7FOzNQSKzuvcEHb4-DuygD7GrKcLdPeMeuoT2VX-o_fotehmuKaCNcXKj6K8e7kwndu_QzNjfU6ZdQ9eshqwo-fBHoYLANRPgvrrjhb0tdpfRSb7l25T8i6m7JsdfKz5OVpJTY_geVmUgc3slDg-njT1yZBhFWKXydHbGDaxSKVovY9y06aonl6Pm41kUKHa2ReD3HgKIMxinYPyQ1a8bkeIit5IbztrzQrw1-7I2xQZy2zfF9rkBgv9_aVmf5__2D0Ynr-gMFWeF8A
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-length:
+      - '2828'
+      content-type:
+      - application/vnd.docker.distribution.manifest.v2+json
+      docker-content-digest:
+      - sha256:0491ecfc011cdebbd6c9bc2f5cd8fd0bd43f6e9b96caae96fb404eb00381068d
+      docker-distribution-api-version:
+      - registry/2.0
+      etag:
+      - '"sha256:0491ecfc011cdebbd6c9bc2f5cd8fd0bd43f6e9b96caae96fb404eb00381068d"'
+      date:
+      - Thu, 14 Nov 2019 02:06:12 GMT
+      connection:
+      - close
+      strict-transport-security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Thu, 14 Nov 2019 02:06:12 GMT
+recorded_with: VCR 5.0.0

@@ -1,4 +1,4 @@
-require 'httparty'
+require 'faraday'
 require 'json'
 
 require 'docker_registry/client'

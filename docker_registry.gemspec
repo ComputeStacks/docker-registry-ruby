@@ -5,17 +5,21 @@ require 'docker_registry/version'
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = 'docker-registry'
-  s.version     = DockerRegistry::VERSION
-  s.authors     = ['Kris Watson']
-  s.email       = ['kris@computestacks.com']
-  s.homepage    = 'https://git.cmptstks.com/cs/docker-registry-rb'
-  s.summary     = 'Docker Distribution v2 API'
-  s.description = 'Docker Distribution v2 API'
-  s.license     = 'closed-source'
-  s.required_ruby_version = '>= 2.5.0'
-  s.add_dependency 'json', '~> 2.2'
-  s.add_dependency 'httparty', '~> 0.17'
-  s.files  = `git ls-files`.split('\n')
-  s.require_paths = ['lib']
+	s.name        = 'docker-registry'
+	s.version     = DockerRegistry::VERSION
+	s.authors     = ['Kris Watson']
+	s.email       = ['kris@computestacks.com']
+	s.homepage    = 'https://git.cmptstks.com/cs/docker-registry-rb'
+	s.summary     = 'Docker Distribution v2 API'
+	s.description = 'Docker Distribution v2 API'
+	s.license     = 'closed-source'
+	s.required_ruby_version = '>= 2.5.0'
+	s.add_dependency 'json', '~> 2.2'
+	s.add_dependency 'faraday', '~> 0.17'
+	s.files  = `git ls-files`.split('\n')
+	s.require_paths = ['lib']
+	s.add_development_dependency "minitest", "~> 5.13"
+	s.add_development_dependency "minitest-reporters", "~> 1.4"
+	s.add_development_dependency "rake", "~> 12.3"
+	s.add_development_dependency "vcr", "~> 5.0"
 end

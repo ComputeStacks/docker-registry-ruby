@@ -5,6 +5,17 @@ rescue LoadError
 end
 
 require 'rdoc/task'
+require 'rake/testtask'
+
+task :default do
+	puts "Unknown command. Available commands are: test, rdoc"
+end
+
+Rake::TestTask.new(:test) do |t|
+	t.libs << "test"
+	t.test_files = FileList["test/**/*_test.rb"]
+	t.verbose = false
+end
 
 RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
@@ -13,10 +24,6 @@ RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('README.rdoc')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
-
-
-
-
 
 
 Bundler::GemHelper.install_tasks
