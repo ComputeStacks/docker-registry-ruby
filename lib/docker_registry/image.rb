@@ -19,7 +19,7 @@ module DockerRegistry
 		end
 
 		def tag_available?(tag = 'latest')
-			client.exec!('head', tag_uri(tag)).status == 200
+			client.exec!('get', tag_uri(tag)).status == 200
 		rescue
 			false
 		end
@@ -55,11 +55,11 @@ module DockerRegistry
 		private
 
 		def tag_uri(tag = 'latest')
-			"#{self.image_name}/manifests/#{tag}"
+			"#{image_name}/manifests/#{tag}"
 		end
 
 		def layer_uri(digest)
-			"#{self.image_name}/manifests/#{digest}"
+			"#{image_name}/manifests/#{digest}"
 		end
 
 	end
