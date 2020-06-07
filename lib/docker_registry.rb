@@ -1,5 +1,5 @@
-require 'faraday'
-require 'json'
+require "faraday"
+require 'oj'
 
 require 'docker_registry/client'
 require 'docker_registry/repo'

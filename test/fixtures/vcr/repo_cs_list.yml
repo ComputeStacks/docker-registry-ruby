@@ -12,7 +12,7 @@ http_interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - Faraday v0.17.0
+      - Faraday v1.0.1
       Authorization:
       - Basic YWRtaW46V0k2OGtaSHc5QQ==
   response:
@@ -27,16 +27,14 @@ http_interactions:
       x-content-type-options:
       - nosniff
       date:
-      - Thu, 14 Nov 2019 02:28:25 GMT
+      - Sun, 07 Jun 2020 01:22:08 GMT
       content-length:
-      - '27'
-      connection:
-      - close
+      - '38'
     body:
       encoding: UTF-8
-      string: '{"repositories":["nginx"]}
+      string: '{"repositories":["deleteme","nginx"]}
 
         '
     http_version:
-  recorded_at: Thu, 14 Nov 2019 02:28:25 GMT
-recorded_with: VCR 5.0.0
+  recorded_at: Sun, 07 Jun 2020 01:22:08 GMT
+recorded_with: VCR 5.1.0

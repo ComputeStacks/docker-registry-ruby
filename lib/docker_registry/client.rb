@@ -93,8 +93,8 @@ module DockerRegistry
 			})
 			conn.basic_auth(auth_username, auth_password) if has_basic_auth?
 			rsp = conn.get("?#{params.join('&')}")
-			if rsp.status < 300
-				data = JSON.parse(rsp.body)
+			if rsp.success?
+				data = Oj.load(rsp.body)
 				self.token_auth = data['token']
 				!data['token'].nil? && data['token'] != ''
 			end

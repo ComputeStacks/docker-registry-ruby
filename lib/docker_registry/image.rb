@@ -11,8 +11,8 @@ module DockerRegistry
 
 		def tags
 			data = client.exec!('get', "#{self.image_name}/tags/list")
-			if data.status < 300
-				JSON.parse(data.body)
+			if data.success?
+				Oj.load(data.body)
 			else
 				[]
 			end
@@ -27,8 +27,9 @@ module DockerRegistry
 		def find_tag(tag = 'latest')
 			return nil unless tag_available?(tag)
 			data = client.exec!('get', tag_uri(tag))
-			if data.status < 300
-				JSON.parse(data.body, quirks_mode: true, allow_nan: true)
+			if data.success?
+				# JSON.parse(data.body, quirks_mode: true, allow_nan: true)
+				Oj.load(data.body)
 			else
 				{}
 			end

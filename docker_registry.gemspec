@@ -14,12 +14,15 @@ Gem::Specification.new do |s|
 	s.description = 'Docker Distribution v2 API'
 	s.license     = 'closed-source'
 	s.required_ruby_version = '>= 2.5.0'
-	s.add_dependency 'json', '~> 2.2'
-	s.add_dependency 'faraday', '~> 0.17'
+
 	s.files  = `git ls-files`.split('\n')
 	s.require_paths = ['lib']
+
+	s.add_runtime_dependency 'faraday', '~> 1'
+  s.add_runtime_dependency 'oj', '~> 3.0'
+
 	s.add_development_dependency "minitest", "~> 5.13"
-	s.add_development_dependency "minitest-reporters", "~> 1.4"
+	s.add_development_dependency "minitest-reporters", "> 1"
 	s.add_development_dependency "rake", "~> 12.3"
 	s.add_development_dependency "vcr", "~> 5.0"
 end

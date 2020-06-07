@@ -1,0 +1,186 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://cr.demo.cmptstks.net:25000/v2/deleteme/manifests/stable
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.docker.distribution.manifest.v2+json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Faraday v1.0.1
+      Authorization:
+      - Basic YWRtaW46V0k2OGtaSHc5QQ==
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-length:
+      - '1362'
+      content-type:
+      - application/vnd.docker.distribution.manifest.v2+json
+      docker-content-digest:
+      - sha256:d9002da0297bcd0909b394c26bd0fc9d8c466caf2b7396f58948cac5318d0d0b
+      docker-distribution-api-version:
+      - registry/2.0
+      etag:
+      - '"sha256:d9002da0297bcd0909b394c26bd0fc9d8c466caf2b7396f58948cac5318d0d0b"'
+      x-content-type-options:
+      - nosniff
+      date:
+      - Sun, 07 Jun 2020 01:22:05 GMT
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+           "schemaVersion": 2,
+           "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+           "config": {
+              "mediaType": "application/vnd.docker.container.image.v1+json",
+              "size": 7511,
+              "digest": "sha256:4392e5dad77dbaf6a573650b0fe1e282b57c5fba6e6cea00a27c7d4b68539b81"
+           },
+           "layers": [
+              {
+                 "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+                 "size": 27098756,
+                 "digest": "sha256:afb6ec6fdc1c3ba04f7a56db32c5ff5ff38962dc4cd0ffdef5beaa0ce2eb77e2"
+              },
+              {
+                 "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+                 "size": 26210578,
+                 "digest": "sha256:dd3ac8106a0bbe43a6e55d2b719fc00a2f8f694e90c7903403e8fdecd2ccc57f"
+              },
+              {
+                 "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+                 "size": 538,
+                 "digest": "sha256:8de28bdda69b66a8e07b14f03a9762f508bc4caac35cef9543bad53503ce5f53"
+              },
+              {
+                 "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+                 "size": 900,
+                 "digest": "sha256:a2c431ac2669038db7a758a597c7d1d53cdfb2dd9bf6de2ad3418973569b3fc7"
+              },
+              {
+                 "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+                 "size": 669,
+                 "digest": "sha256:e070d03fd1b5a05aafc7c16830d80b4ed622d546061fabac8163d3082098a849"
+              }
+           ]
+        }
+    http_version:
+  recorded_at: Sun, 07 Jun 2020 01:22:05 GMT
+- request:
+    method: get
+    uri: https://cr.demo.cmptstks.net:25000/v2/deleteme/manifests/stable
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.docker.distribution.manifest.v2+json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Faraday v1.0.1
+      Authorization:
+      - Basic YWRtaW46V0k2OGtaSHc5QQ==
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-length:
+      - '1362'
+      content-type:
+      - application/vnd.docker.distribution.manifest.v2+json
+      docker-content-digest:
+      - sha256:d9002da0297bcd0909b394c26bd0fc9d8c466caf2b7396f58948cac5318d0d0b
+      docker-distribution-api-version:
+      - registry/2.0
+      etag:
+      - '"sha256:d9002da0297bcd0909b394c26bd0fc9d8c466caf2b7396f58948cac5318d0d0b"'
+      x-content-type-options:
+      - nosniff
+      date:
+      - Sun, 07 Jun 2020 01:22:05 GMT
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+           "schemaVersion": 2,
+           "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+           "config": {
+              "mediaType": "application/vnd.docker.container.image.v1+json",
+              "size": 7511,
+              "digest": "sha256:4392e5dad77dbaf6a573650b0fe1e282b57c5fba6e6cea00a27c7d4b68539b81"
+           },
+           "layers": [
+              {
+                 "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+                 "size": 27098756,
+                 "digest": "sha256:afb6ec6fdc1c3ba04f7a56db32c5ff5ff38962dc4cd0ffdef5beaa0ce2eb77e2"
+              },
+              {
+                 "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+                 "size": 26210578,
+                 "digest": "sha256:dd3ac8106a0bbe43a6e55d2b719fc00a2f8f694e90c7903403e8fdecd2ccc57f"
+              },
+              {
+                 "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+                 "size": 538,
+                 "digest": "sha256:8de28bdda69b66a8e07b14f03a9762f508bc4caac35cef9543bad53503ce5f53"
+              },
+              {
+                 "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+                 "size": 900,
+                 "digest": "sha256:a2c431ac2669038db7a758a597c7d1d53cdfb2dd9bf6de2ad3418973569b3fc7"
+              },
+              {
+                 "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+                 "size": 669,
+                 "digest": "sha256:e070d03fd1b5a05aafc7c16830d80b4ed622d546061fabac8163d3082098a849"
+              }
+           ]
+        }
+    http_version:
+  recorded_at: Sun, 07 Jun 2020 01:22:05 GMT
+- request:
+    method: delete
+    uri: https://cr.demo.cmptstks.net:25000/v2/deleteme/manifests/sha256:d9002da0297bcd0909b394c26bd0fc9d8c466caf2b7396f58948cac5318d0d0b
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.docker.distribution.manifest.v2+json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Faraday v1.0.1
+      Authorization:
+      - Basic YWRtaW46V0k2OGtaSHc5QQ==
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      docker-distribution-api-version:
+      - registry/2.0
+      x-content-type-options:
+      - nosniff
+      date:
+      - Sun, 07 Jun 2020 01:22:06 GMT
+      content-length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Sun, 07 Jun 2020 01:22:06 GMT
+recorded_with: VCR 5.1.0

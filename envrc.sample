@@ -1,0 +1,4 @@
+export REGISTRY_URL=
+export REGISTRY_PORT=
+export REGISTRY_USERNAME=admin
+export REGISTRY_PASSWORD=

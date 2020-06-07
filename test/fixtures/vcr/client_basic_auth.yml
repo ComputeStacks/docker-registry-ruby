@@ -12,33 +12,31 @@ http_interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - Faraday v0.17.0
+      - Faraday v1.0.1
       Authorization:
-      - Basic YWRtaW46NUkzNEVNMWlJdw==
+      - Basic YWRtaW46V0k2OGtaSHc5QQ==
   response:
     status:
       code: 200
       message: OK
     headers:
       content-length:
-      - '948'
+      - '1362'
       content-type:
       - application/vnd.docker.distribution.manifest.v2+json
       docker-content-digest:
-      - sha256:3424b44045d2a9fb0de32d7f5a57dc6dba116969dcca4b617238bbe84d5139a1
+      - sha256:d9002da0297bcd0909b394c26bd0fc9d8c466caf2b7396f58948cac5318d0d0b
       docker-distribution-api-version:
       - registry/2.0
       etag:
-      - '"sha256:3424b44045d2a9fb0de32d7f5a57dc6dba116969dcca4b617238bbe84d5139a1"'
+      - '"sha256:d9002da0297bcd0909b394c26bd0fc9d8c466caf2b7396f58948cac5318d0d0b"'
       x-content-type-options:
       - nosniff
       date:
-      - Thu, 14 Nov 2019 02:10:07 GMT
-      connection:
-      - close
+      - Sun, 07 Jun 2020 01:22:02 GMT
     body:
       encoding: UTF-8
       string: ''
-    http_version: 
-  recorded_at: Thu, 14 Nov 2019 02:10:07 GMT
-recorded_with: VCR 5.0.0
+    http_version:
+  recorded_at: Sun, 07 Jun 2020 01:22:02 GMT
+recorded_with: VCR 5.1.0
