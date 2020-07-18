@@ -5,7 +5,7 @@ require 'docker_registry/version'
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = 'docker-registry'
+  s.name        = 'docker_registry'
   s.version     = DockerRegistry::VERSION
   s.authors     = ['Kris Watson']
   s.email       = ['kris@computestacks.com']
