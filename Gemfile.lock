@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    docker_registry (0.2.4)
+    docker_registry (0.2.5)
       faraday (~> 1)
 
 GEM
