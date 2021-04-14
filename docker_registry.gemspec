@@ -31,7 +31,6 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   s.add_runtime_dependency 'faraday', '~> 1'
-  s.add_runtime_dependency 'oj', '~> 3.0'
 
   s.add_development_dependency "minitest", "~> 5.13"
   s.add_development_dependency "minitest-reporters", "> 1"
