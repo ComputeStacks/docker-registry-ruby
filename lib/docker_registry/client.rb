@@ -23,12 +23,13 @@ module DockerRegistry
 		def exec!(http_method, path)
 			conn = Faraday.new(url: uri_full(path), headers: {
 				'Accept' => 'application/vnd.docker.distribution.manifest.v2+json',
-				'Content-Type' => 'application/json'
+				'Content-Type' => 'application/json',
+        'User-Agent' => 'docker/20.10.14'
 			})
 			if token_auth
-				conn.headers['Authorization'] = %Q(Bearer #{token_auth})
+        conn.request :authorization, 'Bearer', -> { token_auth }
 			elsif has_basic_auth?
-				conn.basic_auth auth_username, auth_password
+        conn.request :authorization, :basic, auth_username, auth_password
 			end
 
 			rsp = case http_method
@@ -91,7 +92,9 @@ module DockerRegistry
 				'Accept' => 'application/json',
 				'Content-Type' => 'application/json'
 			})
-			conn.basic_auth(auth_username, auth_password) if has_basic_auth?
+      if has_basic_auth?
+        conn.request :authorization, :basic, auth_username, auth_password
+      end
 			rsp = conn.get("?#{params.join('&')}")
 			if rsp.success?
 				data = Oj.load(rsp.body)

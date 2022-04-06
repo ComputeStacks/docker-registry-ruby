@@ -7,6 +7,8 @@ module DockerRegistry
 			self.client = client
 		end
 
+    # Depending on the scope, this may fail even if we have valid
+    # credentials for a particular image.
 		def images
 			rsp = client.exec!('get', '_catalog')
 			return [] if rsp.status > 205

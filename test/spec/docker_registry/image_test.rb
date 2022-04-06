@@ -15,48 +15,48 @@ describe DockerRegistry::Image do
   end
 
   it 'can access cs image tags' do
-
-    VCR.use_cassette('image.cs.tag_list') do
-      tags = @cs_image.tags
-      assert_equal 'nginx', tags['name']
-      assert_includes tags['tags'], 'latest'
-    end
+    tags = @cs_image.tags
+    assert_equal 'nginx', tags['name']
+    assert_includes tags['tags'], 'latest'
   end
 
   it 'can access docker hub image tags' do
 
-    VCR.use_cassette('image.hub.tag_list') do
-      tags = @hub_image.tags
-      assert_equal 'cmptstks/wordpress', tags['name']
-      assert !tags['tags'].empty?
-    end
+    tags = @hub_image.tags
+    assert_equal 'cmptstks/wordpress', tags['name']
+    refute_empty tags['tags']
 
   end
 
   it 'can load cs image tag' do
-
-    VCR.use_cassette('image.cs.tag') do
-      assert !@cs_image.find_tag().empty?
-    end
-
+    refute_empty @cs_image.find_tag()
   end
 
   it 'can load hub image tag' do
+    refute_empty @hub_image.find_tag('php7.4-litespeed')
+  end
 
-    VCR.use_cassette('image.hub.tag') do
-      assert !@hub_image.find_tag('php7.3-litespeed').empty?
-    end
+  it 'can list all tags in a bearer registry' do
+
+    client = DockerRegistry::Client.new(
+      ENV['GL_REGISTRY_URL'],
+      ENV['GL_REGISTRY_PORT'],
+      { username: ENV['GL_REGISTRY_USERNAME'], password: ENV['GL_REGISTRY_TOKEN'] }
+    )
+
+    image = DockerRegistry::Image.new(client, ENV['GL_REGISTRY_IMAGE'])
+
+    refute_empty image.tags['tags']
 
   end
 
-  it 'can delete a tag' do
-
-    image = DockerRegistry::Image.new(@cs_registry_client, 'deleteme')
-
-    VCR.use_cassette('image.cs.delete') do
-      assert image.delete_tag!('stable')
-    end
-
-  end
+##
+# TODO: Automate creating a tag first, so we can then delete it in our tests.
+#   it 'can delete a tag' do
+#
+#     image = DockerRegistry::Image.new(@cs_registry_client, 'deleteme')
+#     assert image.delete_tag!('stable')
+#
+#   end
 
 end

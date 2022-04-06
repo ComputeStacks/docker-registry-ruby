@@ -9,10 +9,8 @@ describe DockerRegistry::Client do
     assert_kind_of DockerRegistry::Client, client
 
     # Check if we can access the mysql image
-    VCR.use_cassette('client.docker_hub_auth') do
-      response = client.exec!('head', 'library/mysql/manifests/latest')
-      assert response.success?
-    end
+    response = client.exec!('head', 'library/mysql/manifests/latest')
+    assert response.success?
 
   end
 
@@ -25,11 +23,25 @@ describe DockerRegistry::Client do
     )
     assert_kind_of DockerRegistry::Client, client
 
-    # Check if we can access the mysql image
-    VCR.use_cassette('client.basic.auth') do
-      response = client.exec!('head', 'nginx/manifests/latest')
-      assert response.success?
-    end
+    # Check if we can access the nginx image
+    response = client.exec!('head', 'nginx/manifests/latest')
+    assert response.success?
+
+  end
+
+  it 'can authenticate with a bearer auth registry' do
+
+    client = DockerRegistry::Client.new(
+      ENV['GL_REGISTRY_URL'],
+      ENV['GL_REGISTRY_PORT'],
+      { username: ENV['GL_REGISTRY_USERNAME'], password: ENV['GL_REGISTRY_TOKEN'] }
+    )
+    assert_kind_of DockerRegistry::Client, client
+
+    # Check if we can access the image
+    image_path = "#{ENV['GL_REGISTRY_IMAGE']}/manifests/latest"
+    response = client.exec!('head', image_path)
+    assert response.success?
 
   end
 

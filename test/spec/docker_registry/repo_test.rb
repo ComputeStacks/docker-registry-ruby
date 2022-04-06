@@ -10,9 +10,7 @@ describe DockerRegistry::Repo do
       { username: ENV['REGISTRY_USERNAME'], password: ENV['REGISTRY_PASSWORD'] }
     )
 
-    VCR.use_cassette('repo.cs.list') do
-      assert !DockerRegistry::Repo.new(client).images.empty?
-    end
+    assert !DockerRegistry::Repo.new(client).images.empty?
 
   end
 

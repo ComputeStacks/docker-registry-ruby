@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://git.cmptstks.com/cs/docker-registry-rb'
   s.summary     = 'Docker Distribution v2 API'
   s.description = 'Docker Distribution v2 API'
-  s.license     = 'closed-source'
+  s.license     = 'MIT'
   s.required_ruby_version = '>= 2.5.0'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -30,10 +30,9 @@ Gem::Specification.new do |s|
 
   s.require_paths = ['lib']
 
-  s.add_runtime_dependency 'faraday', '~> 1'
+  s.add_runtime_dependency 'faraday', '~> 2.2'
 
-  s.add_development_dependency "minitest", "~> 5.13"
+  s.add_development_dependency "minitest", "~> 5.15"
   s.add_development_dependency "minitest-reporters", "> 1"
-  s.add_development_dependency "rake", "~> 12.3"
-  s.add_development_dependency "vcr", "~> 5.0"
+  s.add_development_dependency "rake", "~> 13"
 end
