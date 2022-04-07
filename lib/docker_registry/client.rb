@@ -29,7 +29,7 @@ module DockerRegistry
 			if token_auth
         conn.request :authorization, 'Bearer', -> { token_auth }
 			elsif has_basic_auth?
-        conn.request :authorization, :basic, auth_username, auth_password
+        conn.request :basic_auth, auth_username, auth_password
 			end
 
 			rsp = case http_method
@@ -93,7 +93,7 @@ module DockerRegistry
 				'Content-Type' => 'application/json'
 			})
       if has_basic_auth?
-        conn.request :authorization, :basic, auth_username, auth_password
+        conn.request :basic_auth, auth_username, auth_password
       end
 			rsp = conn.get("?#{params.join('&')}")
 			if rsp.success?
