@@ -20,7 +20,7 @@ module DockerRegistry
 			self.online = true
 		end
 
-		def exec!(http_method, path)
+		def exec!(http_method, path, enable_basic_auth = true)
 			conn = Faraday.new(url: uri_full(path), headers: {
 				'Accept' => 'application/vnd.docker.distribution.manifest.v2+json',
 				'Content-Type' => 'application/json',
@@ -28,7 +28,7 @@ module DockerRegistry
 			})
 			if token_auth
         conn.request :authorization, 'Bearer', -> { token_auth }
-			elsif has_basic_auth?
+			elsif has_basic_auth? && enable_basic_auth
         conn.request :basic_auth, auth_username, auth_password
 			end
 
@@ -42,9 +42,13 @@ module DockerRegistry
 			else
 				return nil
 			end
-			if self.online && (rsp.status == 401 && rsp.headers['www-authenticate']) && !token_auth
+			if online && (rsp.status == 401 && rsp.headers['www-authenticate']) && !token_auth
 				authenticate!(rsp.headers['www-authenticate'])
 				exec!(http_method, path)
+      elsif enable_basic_auth && online && rsp.status == 401 && !token_auth
+        # GitHub will not return an auth header if basic auth is passed, unlike other registries.
+        # If we encounter that, try once more without basic auth to see if we can get a valid header.
+        exec!(http_method, path, false)
 			else
 				rsp
 			end
@@ -55,7 +59,7 @@ module DockerRegistry
 		end
 
 		def is_docker_hub?
-			self.host == "registry.hub.docker.com"
+			host == "registry.hub.docker.com"
 		end
 
 		private
@@ -78,17 +82,17 @@ module DockerRegistry
 			auth_header.gsub('Bearer ', '').split(',').each do |el|
 				k,v = el.split('=')
 				if k == 'realm'
-					self.token_endpoint = v.strip.gsub('"','')
+					token_endpoint = v.strip.gsub('"','')
 				else
 					query_params << el.strip.gsub('"','')
 				end
 			end
-			self.online = req_auth_token!(query_params)
+			online = req_auth_token!(query_params)
 		end
 
 		def req_auth_token!(params)
-			return nil if self.token_endpoint.nil? || self.token_endpoint.strip == ''
-			conn = Faraday.new(url: self.token_endpoint, headers: {
+			return nil if token_endpoint.nil? || token_endpoint.strip == ''
+			conn = Faraday.new(url: token_endpoint, headers: {
 				'Accept' => 'application/json',
 				'Content-Type' => 'application/json'
 			})
@@ -98,7 +102,7 @@ module DockerRegistry
 			rsp = conn.get("?#{params.join('&')}")
 			if rsp.success?
 				data = Oj.load(rsp.body)
-				self.token_auth = data['token']
+				token_auth = data['token']
 				!data['token'].nil? && data['token'] != ''
 			end
 			false
