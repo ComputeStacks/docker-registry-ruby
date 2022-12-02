@@ -66,7 +66,7 @@ module DockerRegistry
       host == "registry-1.docker.io"
     end
 
-    #private
+    private
 
     def has_basic_auth?
       !(auth_username.nil? || auth_username == '') && !(auth_password.nil? || auth_password == '')
