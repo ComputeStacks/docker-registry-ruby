@@ -8,9 +8,8 @@ describe DockerRegistry::Client do
     assert client.is_docker_hub?
     assert_kind_of DockerRegistry::Client, client
 
-    # Check if we can access the mysql image
-    response = client.exec!('head', 'library/mysql/manifests/latest')
-    assert response.success?
+    response = client.exec!('get', 'library/mysql/manifests/latest')
+    assert response&.status&.success?
 
   end
 
@@ -21,27 +20,33 @@ describe DockerRegistry::Client do
       ENV['REGISTRY_PORT'],
       { username: ENV['REGISTRY_USERNAME'], password: ENV['REGISTRY_PASSWORD'] }
     )
+    client.insecure_ssl = true
     assert_kind_of DockerRegistry::Client, client
 
-    # Check if we can access the nginx image
     response = client.exec!('head', 'nginx/manifests/latest')
-    assert response.success?
+    assert response&.status&.success?
+
+  end
+
+  it 'can authenticate with github anonymously' do
+
+    client = DockerRegistry::Client.new("ghcr.io", 443)
+    assert_kind_of DockerRegistry::Client, client
+
+    image_path = "computestacks/cs-docker-php/manifests/latest"
+    response = client.exec!('head', image_path)
+    assert response&.status&.success?
 
   end
 
   it 'can authenticate with a bearer auth registry' do
 
-    client = DockerRegistry::Client.new(
-      ENV['GL_REGISTRY_URL'],
-      ENV['GL_REGISTRY_PORT'],
-      { username: ENV['GL_REGISTRY_USERNAME'], password: ENV['GL_REGISTRY_TOKEN'] }
-    )
+    client = DockerRegistry::Client.new("ghcr.io", 443)
     assert_kind_of DockerRegistry::Client, client
 
-    # Check if we can access the image
-    image_path = "#{ENV['GL_REGISTRY_IMAGE']}/manifests/latest"
+    image_path = "computestacks/cs-docker-php/manifests/latest"
     response = client.exec!('head', image_path)
-    assert response.success?
+    assert response&.status&.success?
 
   end
 

@@ -9,6 +9,7 @@ describe DockerRegistry::Image do
       ENV['REGISTRY_PORT'],
       { username: ENV['REGISTRY_USERNAME'], password: ENV['REGISTRY_PASSWORD'] }
     )
+    @cs_registry_client.insecure_ssl = true
 
     @hub_image = DockerRegistry::Image.new(@hub_registry_client, 'cmptstks/wordpress')
     @cs_image = DockerRegistry::Image.new(@cs_registry_client, 'nginx')
@@ -29,34 +30,21 @@ describe DockerRegistry::Image do
   end
 
   it 'can load cs image tag' do
-    refute_empty @cs_image.find_tag()
+    refute_empty @cs_image.find_tag
   end
 
   it 'can load hub image tag' do
     refute_empty @hub_image.find_tag('php7.4-litespeed')
   end
 
-  it 'can list all tags in a bearer registry' do
+  it 'can access github image tags anonymously' do
 
-    client = DockerRegistry::Client.new(
-      ENV['GL_REGISTRY_URL'],
-      ENV['GL_REGISTRY_PORT'],
-      { username: ENV['GL_REGISTRY_USERNAME'], password: ENV['GL_REGISTRY_TOKEN'] }
-    )
+    client = DockerRegistry::Client.new("ghcr.io", 443)
 
-    image = DockerRegistry::Image.new(client, ENV['GL_REGISTRY_IMAGE'])
+    image = DockerRegistry::Image.new(client, "computestacks/cs-docker-php")
 
     refute_empty image.tags['tags']
 
   end
-
-##
-# TODO: Automate creating a tag first, so we can then delete it in our tests.
-#   it 'can delete a tag' do
-#
-#     image = DockerRegistry::Image.new(@cs_registry_client, 'deleteme')
-#     assert image.delete_tag!('stable')
-#
-#   end
 
 end

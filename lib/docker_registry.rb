@@ -1,4 +1,4 @@
-require "faraday"
+require "http"
 
 require 'docker_registry/client'
 require 'docker_registry/repo'
